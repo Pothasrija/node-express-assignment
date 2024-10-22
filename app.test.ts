@@ -34,6 +34,7 @@ describe("POST /transactions", () => {
          .send(transaction);
 
       expect(response.status).toBe(400);
+      expect(response.body).toHaveProperty("error", '"category" is required');
    });
 
    it("fails to create a transaction with invalid type", async () => {
@@ -49,6 +50,10 @@ describe("POST /transactions", () => {
          .send(transaction);
 
       expect(response.status).toBe(400);
+      expect(response.body).toHaveProperty(
+         "error",
+         '"type" must be one of [income, expense]'
+      );
    });
 });
 

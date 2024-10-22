@@ -45,7 +45,7 @@ const db = new sqlite3.Database("data.db", (err: Error | null) => {
             type TEXT CHECK( type IN ('income','expense') ) NOT NULL,
             category INTEGER,
             amount REAL NOT NULL,
-            date TEXT NOT NULL,
+            date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
             description TEXT,
             FOREIGN KEY (category) REFERENCES categories(id)
         )`,
@@ -54,6 +54,26 @@ const db = new sqlite3.Database("data.db", (err: Error | null) => {
                console.error(err.message);
             } else {
                console.log("Transactions table created successfully.");
+
+               // Insert dummy data
+               const insertDummyData = `
+                 INSERT INTO transactions (type, category, amount, description)
+                 VALUES 
+                     ('income', 1, 1000.00, 'Salary payment'),
+                     ('expense', 3, 200.00, 'Groceries shopping'),
+                     ('income', 2, 1500.00, 'Freelance work'),
+                     ('expense', 4, 300.00, 'Utility bill'),
+                     ('expense', 5, 100.00, 'Movie tickets')
+             `;
+               db.run(insertDummyData, (err) => {
+                  if (err) {
+                     console.error(err.message);
+                  } else {
+                     console.log(
+                        "Data inserted into transactions table successfully."
+                     );
+                  }
+               });
             }
          }
       );
