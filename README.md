@@ -19,7 +19,7 @@ cd node-express-assignment
 ```
 
 ```bash
-cd bun install
+bun install
 ```
 
 Now, run the following to create the database with all tables and required data:
