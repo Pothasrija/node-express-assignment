@@ -9,13 +9,17 @@ Technology used : Node js, Express js, sqlite(database), bun(runtime)
 First, clone the repo:
 
 ```bash
-git clone https://github.com/Pothasrija/node-express-assignment
+git clone https://github.com/Pothasrija/node-express-assignment.git
 ```
 
 Then, navigate into the repository:
 
 ```bash
 cd node-express-assignment
+```
+
+```bash
+cd bun install
 ```
 
 Now, run the following to create the database with all tables and required data:
